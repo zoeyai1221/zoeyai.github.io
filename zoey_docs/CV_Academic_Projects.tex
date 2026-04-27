@@ -1,0 +1,134 @@
+\documentclass[letterpaper,10pt]{article}
+\usepackage{latexsym}
+\usepackage[empty]{fullpage}
+\usepackage{titlesec}
+\usepackage[usenames,dvipsnames]{color}
+\usepackage{verbatim}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+\usepackage{fancyhdr}
+\usepackage[english]{babel}
+\usepackage{tabularx}
+\usepackage{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\input{glyphtounicode}
+
+\pagestyle{fancy}\fancyhf{}\fancyfoot{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+
+\addtolength{\oddsidemargin}{-0.5in}
+\addtolength{\evensidemargin}{-0.5in}
+\addtolength{\textwidth}{1in}
+\addtolength{\topmargin}{-0.55in}
+\addtolength{\textheight}{1.1in}
+
+\urlstyle{same}
+\raggedbottom\raggedright
+\setlength{\tabcolsep}{0in}
+
+\titleformat{\section}{\vspace{-4pt}\bfseries\scshape\raggedright\large}{}{0em}{}[\color{black}\titlerule\vspace{-5pt}]
+\pdfgentounicode=1
+
+\newcommand{\resumeItem}[1]{\item\small{{#1\vspace{-2pt}}}}
+\newcommand{\resumeSubheading}[4]{
+  \vspace{-2pt}\item
+  \begin{tabular*}{0.97\textwidth}[t]{l@{\extracolsep{\fill}}r}
+    \textbf{#1} & #2 \\
+    \textit{\small#3} & \textit{\small #4} \\
+  \end{tabular*}\vspace{-7pt}}
+\newcommand{\resumeProjectHeading}[2]{
+  \item\begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
+    \small#1 & #2 \\
+  \end{tabular*}\vspace{-7pt}}
+\newcommand{\resumeNote}[1]{\item\small{\textit{[#1]}}\vspace{-4pt}}
+\renewcommand\labelitemii{$\vcenter{\hbox{\tiny$\bullet$}}$}
+\newcommand{\resumeSubHeadingListStart}{\begin{itemize}[leftmargin=0.15in,label={}]}
+\newcommand{\resumeSubHeadingListEnd}{\end{itemize}}
+\newcommand{\resumeItemListStart}{\begin{itemize}}
+\newcommand{\resumeItemListEnd}{\end{itemize}\vspace{-5pt}}
+
+\begin{document}
+
+\begin{center}
+  {\LARGE \textbf{Siyu (Zoey) Ai --- Academic Projects Reference}} \\[4pt]
+  \small Reference document for resume tailoring. Multiple framings per project where applicable.
+\end{center}
+
+% ─────────────────────────────────────────────
+\section{AI-Powered Veterinary Assessment Automation}
+% ─────────────────────────────────────────────
+\resumeSubHeadingListStart
+  \resumeProjectHeading{\textbf{AI-Powered Pet Health Assessment} \emph{(Multimodal LLM, Graduate Research)}}{January 2026 -- Present}
+
+  \resumeNote{Business / Strategy framing — use for S\&O, PM, Finance-adjacent strategy roles}
+  \resumeItemListStart
+    \resumeItem{Designed a structured feasibility study evaluating 7 AI models across 43 experimental configurations to automate clinical pet health assessment --- a diagnostic task previously dependent on per-case expert veterinary judgment.}
+    \resumeItem{Identified that a domain-specific fine-tuned open-source model outperformed Google Gemini 3.1 Pro on accuracy (mean deviation: 0.94 vs.\ 0.98) at a fraction of deployment cost, producing a clear cost-efficiency recommendation for AI product adoption.}
+    \resumeItem{Built a reusable prompt strategy evaluation framework across 7 configurations; quantified that prompt design alone drove up to 40\% accuracy improvement without additional training cost, informing AI system optimization decisions.}
+  \resumeItemListEnd
+
+  \resumeNote{Technical framing --- use for ML/engineering roles or technical PM}
+  \resumeItemListStart
+    \resumeItem{Built and fine-tuned a multimodal AI pipeline (GPT-4o, Qwen2.5-VL-3B, Gemma 4) for automated clinical Body Condition Score assessment; fine-tuned model surpassed veterinary student accuracy and approached expert clinician level (mean deviation: 0.94).}
+    \resumeItem{Designed a teacher-student knowledge distillation framework with Chain-of-Thought prompting to generate synthetic training data, enabling domain adaptation of a 3B-parameter open-source model at significantly lower cost than proprietary APIs.}
+    \resumeItem{Conducted 43-configuration experiment matrix across 7 models and 7 prompt strategies (direct, JSON, reasoning, best-of-5, agent-verifier, visual few-shot, multi-agent debate); identified visual few-shot and reasoning-chain as highest-performing configurations.}
+  \resumeItemListEnd
+\resumeSubHeadingListEnd
+
+% ─────────────────────────────────────────────
+\section{Database System Design \& Business Logic Modeling}
+% ─────────────────────────────────────────────
+\resumeSubHeadingListStart
+  \resumeProjectHeading{\textbf{Database System Design \& Business Logic Modeling} \emph{(MySQL, Java, DAO Pattern)}}{}
+
+  \resumeNote{BSA / Systems framing}
+  \resumeItemListStart
+    \resumeItem{Designed a relational database (MySQL) modeling 20+ business entities; applied BCNF normalization and referential integrity constraints to translate stakeholder requirements into a governed, scalable data architecture.}
+    \resumeItem{Translated complex business rules into a Java-based backend using the DAO pattern, mapping domain logic to system behavior; documented data flows and functional specifications to bridge business requirements with technical implementation.}
+    \resumeItem{Built a web-based analytics dashboard for real-time multi-dimensional reporting; defined functional requirements for security controls (SQL injection prevention) and validated system reliability against acceptance criteria.}
+  \resumeItemListEnd
+
+  \resumeNote{Technical framing}
+  \resumeItemListStart
+    \resumeItem{Architected a comprehensive relational database system (MySQL) modeling 20+ interconnected entities, ensuring data integrity through strict BCNF normalization and referential integrity constraints.}
+    \resumeItem{Engineered a Java-based backend using the DAO pattern to implement robust CRUD operations, translating complex business logic into scalable technical architecture.}
+    \resumeItem{Developed a web-based analytics dashboard for real-time monitoring of multidimensional metrics; implemented secure database interactions to prevent SQL injection and ensure system reliability.}
+  \resumeItemListEnd
+\resumeSubHeadingListEnd
+
+% ─────────────────────────────────────────────
+\section{Study Buddy Find Chatbot}
+% ─────────────────────────────────────────────
+\resumeSubHeadingListStart
+  \resumeProjectHeading{\textbf{Study Buddy Find Chatbot} \emph{(Discord, Agile/Scrum)}}{}
+  \resumeItemListStart
+    \resumeItem{Designed and launched a Discord chatbot to enhance peer-to-peer study collaboration for 300+ students, integrating user preferences to provide personalized peer matching and driving engagement through tailored interactions.}
+    \resumeItem{Conducted in-depth user research and requirement analysis, translating student needs into 20+ detailed user stories with clear acceptance criteria to ensure user-focused outcomes and technical feasibility.}
+    \resumeItem{Managed Agile development cycles, leading four 2-week sprints and achieving a 95\% milestone completion rate while tracking and resolving 100+ issues through GitHub Projects to ensure on-time delivery.}
+  \resumeItemListEnd
+\resumeSubHeadingListEnd
+
+% ─────────────────────────────────────────────
+\section{PalUp}
+% ─────────────────────────────────────────────
+\resumeSubHeadingListStart
+  \resumeProjectHeading{\textbf{PalUp --- Social Activity Matching Web Application} \emph{(React, Node.js, MySQL)}}{}
+
+  \resumeNote{PM / UX framing}
+  \resumeItemListStart
+    \resumeItem{Conceptualized and launched PalUp, a community-driven platform connecting locals and travelers through shared dining interests; led product discovery, conducting user interviews to define core use cases and a prioritized backlog of 20+ user stories.}
+    \resumeItem{Orchestrated Agile development across 4 bi-weekly sprints; managed the product roadmap and resolved technical blockers to achieve a 95\% milestone completion rate.}
+    \resumeItem{Designed end-to-end product experience in Figma from sketches to high-fidelity prototype; resolved 10+ usability issues identified through heuristic evaluation and user testing --- recognized by professor as a course Hall of Fame prototype.}
+  \resumeItemListEnd
+
+  \resumeNote{Full-stack / technical framing}
+  \resumeItemListStart
+    \resumeItem{Designed and implemented a full-stack web application with React (TypeScript), Node.js/Express.js, and MySQL, featuring JWT-based authentication, RESTful APIs, and event management for dining and trip planning.}
+    \resumeItem{Implemented event-driven backend with optimized request handling and in-memory caching; used Jest and Supertest for unit and integration testing, achieving 95\%+ coverage.}
+    \resumeItem{Designed a MySQL relational database with 20+ entities modeled via UML E-R diagrams; built Express.js DAO layers for CRUD operations across users, events, and capacity schemas.}
+  \resumeItemListEnd
+\resumeSubHeadingListEnd
+
+\end{document}
