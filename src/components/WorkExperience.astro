@@ -1,0 +1,99 @@
+---
+const experiences = [
+  {
+    company: "SlicPix, Inc.",
+    role: "Software Engineer Co-op",
+    department: "Technology Department",
+    period: "Sep 2025 – Jan 2026",
+    location: "Seattle, WA",
+    bullets: [
+      "Led UAT process for AI-powered features across Shopify app extension and Interactive Studio 2.0, validating backend-frontend interactions against business requirements.",
+      "Partnered with founding team on product scoping and release readiness, aligning cross-functional technical and operational requirements with go-to-market timelines.",
+      "Supported GTM strategy and investor pitch framing, translating technical capabilities into business value narratives.",
+    ],
+  },
+  {
+    company: "Amazon Web Services, Inc.",
+    role: "Business Operations Manager",
+    department: "Central Strategy Planning Team",
+    period: "Feb 2022 – Aug 2023",
+    location: "Shanghai, China",
+    bullets: [
+      "Orchestrated strategic alignment between GCR C-suite and 20+ sales, technical, and functional teams; translated executive priorities into operational roadmaps for a $3.5B+ annual revenue business.",
+      "Defined requirements and led end-to-end delivery of an Anaplan-based automated sales forecasting tool, improving efficiency for 1,000+ field sales reps.",
+      "Built SQL and Tableau pipelines to process 600K+ monthly sales records into structured dashboards, reducing manual reporting effort by 90%.",
+    ],
+  },
+  {
+    company: "Amazon.com, Inc.",
+    role: "Financial Analyst",
+    department: "Amazon Logistics Team",
+    period: "May 2020 – Feb 2022",
+    location: "Seattle, WA",
+    bullets: [
+      "Delivered a centralized tracking system across 300+ logistics stations, closing a data visibility gap and enabling consistent cross-team reporting and planning.",
+      "Developed automated forecasting models using Python and SQL, improving forecast accuracy by 30% and reducing manual analysis cycles.",
+      "Championed ERP and BI tool adoption across finance and operations teams; standardized reporting workflows across 300+ stations.",
+    ],
+  },
+  {
+    company: "Huawei Technologies, Inc.",
+    role: "Financial Planning Analyst",
+    department: "Finance Department",
+    period: "Sep 2018 – Feb 2020",
+    location: "Plano, TX",
+    bullets: [
+      "Administered Workday ERP rollout for 50+ Finance and executive end users; designed onboarding workflows and improved planning efficiency by 50%.",
+      "Consolidated 500K+ monthly expense records from 30+ enterprise systems (MS Access, SQL Server), delivering monthly financial reports for executive review.",
+      "Managed forecasting and budgeting for 40+ R&D projects ($60M+ budget), achieving 94% spend execution rate.",
+    ],
+  },
+];
+---
+
+<section class="w-full max-w-6xl mx-auto px-4 sm:px-6 md:px-6 py-10 pb-16">
+  <div class="flex items-center gap-4 mb-10">
+    <h2 class="text-2xl font-bold whitespace-nowrap font-cabinet-grotesk">
+      Work Experience
+    </h2>
+    <div class="flex-1 h-px bg-black/20"></div>
+  </div>
+
+  <div class="relative ml-3">
+    <div class="absolute left-0 top-3 bottom-3 w-px bg-black/15"></div>
+
+    <div class="space-y-6">
+      {
+        experiences.map((exp) => (
+          <div class="relative pl-9">
+            <div class="absolute -left-[5px] top-[18px] w-[11px] h-[11px] rounded-full bg-primary-500 border-2 border-black" />
+
+            <div class="border border-black rounded-lg bg-white p-5 shadow-[4px_4px_0px_rgba(0,0,0,0.10)] hover:shadow-[2px_2px_0px_rgba(0,0,0,0.10)] hover:translate-x-[2px] hover:translate-y-[2px] transition-all duration-150">
+              <div class="flex flex-wrap items-start justify-between gap-2 mb-3">
+                <div>
+                  <h3 class="font-bold text-base leading-tight">{exp.company}</h3>
+                  <p class="text-sm text-darkslate-300 mt-0.5">
+                    {exp.role} · {exp.department}
+                  </p>
+                  <p class="text-xs text-darkslate-300 mt-0.5">{exp.location}</p>
+                </div>
+                <span class="text-xs font-semibold px-3 py-1 border border-black rounded-full bg-primary-500 whitespace-nowrap">
+                  {exp.period}
+                </span>
+              </div>
+
+              <ul class="space-y-1.5 mt-3">
+                {exp.bullets.map((b) => (
+                  <li class="text-sm flex gap-2 items-start">
+                    <span class="mt-[7px] w-1.5 h-1.5 rounded-full bg-black/40 flex-shrink-0" />
+                    <span class="leading-relaxed">{b}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>
