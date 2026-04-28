@@ -1,26 +1,28 @@
 import { defineConfig, fontProviders } from "astro/config";
 import sitemap from "@astrojs/sitemap";
-import netlify from "@astrojs/netlify";
 import robotsTxt from "astro-robots-txt";
 import UnoCSS from "@unocss/astro";
 import icon from "astro-icon";
-
 import solidJs from "@astrojs/solid-js";
 import { remarkReadingTime } from "./src/lib/remark-reading-time.mjs";
-
 import svelte from "@astrojs/svelte";
-
 import db from "@astrojs/db";
 
-const envSiteUrl = process.env.SITE_URL ?? "https://gianmarcocavallo.com/";
-const site = envSiteUrl.endsWith("/") ? envSiteUrl : `${envSiteUrl}/`;
-const siteNoTrailingSlash = site.endsWith("/") ? site.slice(0, -1) : site;
+// Use your GitHub Pages URL
+const site = "https://zoeyai1221.github.io/zoeyai.github.io/";
 
-// https://astro.build/config
 export default defineConfig({
+  // Essential for GitHub Pages sub-path deployment
+  base: "/zoeyai.github.io",
+  site,
+  
+  // Set to 'static' to allow the local DB to be bundled during build
+  output: "static",
+
   experimental: {
     svgo: true,
   },
+  
   fonts: [
     {
       provider: fontProviders.local(),
@@ -56,26 +58,21 @@ export default defineConfig({
       },
     },
   ],
-  site,
+
   integrations: [
     sitemap(),
-    robotsTxt({
-      sitemap: [
-        `${siteNoTrailingSlash}/sitemap-index.xml`,
-        `${siteNoTrailingSlash}/sitemap-0.xml`,
-      ],
-    }),
+    robotsTxt(), // Automatically links to your sitemap
     solidJs(),
     UnoCSS({ injectReset: true }),
     icon(),
     svelte(),
-    db(),
+    db(), // Astro DB integration
   ],
+
   markdown: {
     remarkPlugins: [remarkReadingTime],
   },
-  output: "server",
-  adapter: netlify({ middlewareMode: "edge" }),
+
   vite: {
     assetsInclude: "**/*.riv",
   },
