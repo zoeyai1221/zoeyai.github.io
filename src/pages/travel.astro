@@ -2,6 +2,7 @@
 import Globe from "../components/Globe";
 import BasicLayout from "../layouts/BasicLayout.astro";
 import { SITE } from "../site-config";
+const base = import.meta.env.BASE_URL.replace(/\/$/, "");
 ---
 
 <script>
@@ -25,8 +26,8 @@ import { SITE } from "../site-config";
 >
   <a
     class="text-white absolute bg-neutral-900 hover:bg-neutral-800 top-4 left-4 px-4 py-2 border-1 border-solid border-neutral-600 rounded-lg"
-    href="/">Back</a
-  >
+    href={base}
+  >Back</a>
 
   <Globe client:load enableHover={true} />
 </BasicLayout>

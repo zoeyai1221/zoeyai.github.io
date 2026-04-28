@@ -2,6 +2,7 @@
 import Layout from "../../layouts/Layout.astro";
 import TurbulenceHeaderComponent from "../../components/playground/turbulenceHeader";
 import { SITE } from "../../site-config";
+const base = import.meta.env.BASE_URL.replace(/\/$/, "");
 ---
 
 <script>
@@ -17,7 +18,7 @@ import { SITE } from "../../site-config";
 >
   <div class="flex flex-col items-start h-screen w-screen p-4">
     <a
-      href="/playground"
+      href={`${base}/playground`}
       class="text-white bg-neutral-900 hover:bg-neutral-800 w-fit px-4 py-2 border-1 border-solid border-neutral-600 rounded-lg"
       >Back</a
     >

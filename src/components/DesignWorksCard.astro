@@ -15,13 +15,14 @@ import StockMarketUpIllustration from "../assets/illustrations/stock_market_up.w
 import HouseIllustration from "../assets/illustrations/house.webp";
 import HexElementIllustration from "../assets/illustrations/hex_element.png";
 import BoneLogoExplorationIllustration from "../assets/illustrations/bone_logo_exploration.webp";
+const base = import.meta.env.BASE_URL.replace(/\/$/, "");
 ---
 
 <Card
   colSpan="lg:col-span-1"
   rowSpan="md:row-span-1"
   title="Design Works"
-  href="/design-works"
+  href={`${base}/design-works`}
 >
   <div
     class="absolute inset-0 z-[-1] opacity-20 grid grid-cols-[repeat(4,2.5rem)] grid-rows-[repeat(3,2.5rem)] gap-2 rotate-40 w-fit"

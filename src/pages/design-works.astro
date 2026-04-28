@@ -17,6 +17,7 @@ import BoneLogoExplorationIllustration from "../assets/illustrations/bone_logo_e
 import HexElementIllustration1 from "../assets/illustrations/hex_element_1.png";
 import HexElementIllustration2 from "../assets/illustrations/hex_element_2.png";
 import { SITE } from "../site-config";
+const base = import.meta.env.BASE_URL.replace(/\/$/, "");
 ---
 
 <script>
@@ -32,10 +33,9 @@ import { SITE } from "../site-config";
 >
   <div class="flex flex-col justify-center items-center just p-4 pt-40">
     <a
-      href="/"
+      href={base}
       class="fixed top-10 left-10 text-white bg-neutral-900 hover:bg-neutral-800 w-fit px-4 py-2 border-1 border-solid border-neutral-600 rounded-lg"
-      >Back</a
-    >
+      >Back</a>
     <p class="text-white mb-10">
       here you can see some of the illustrations/logos/exploration/graphic stuff
       I did during the years.
