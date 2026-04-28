@@ -12,14 +12,16 @@ type Entry = {
   endMonth: number;
   location: string;
   bullets: string[];
+  logo: string;
+  skills: string[];
 };
 
 const MN = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
 
 const LATEST      = 2026 * 12 + 4; // Apr 2026 — top of timeline
 const SLOT_OFFSET = 40;            // first work slot top (clears NEU icon)
-const SLOT_H      = 160;           // fixed px between work card tops
-const PPM_EDU     = 7;             // px/month — edu box placement only
+const SLOT_H      = 220;           // fixed px between work card tops
+const PPM_EDU     = 10;            // px/month — edu box placement only
 const MAX_EDU_H   = 160;           // cap edu duration area height
 
 const durMo = (e: Entry) => e.endYear * 12 + e.endMonth - e.startYear * 12 - e.startMonth;
@@ -37,6 +39,8 @@ const entries: Entry[] = [
     title:"SlicPix, Inc.", subtitle:"Software Engineer Co-op",
     startYear:2025, startMonth:9, endYear:2026, endMonth:2,
     location:"Seattle, WA",
+    logo:"https://www.google.com/s2/favicons?domain=slicpix.com&sz=64",
+    skills:["UAT", "Shopify", "AI", "Product", "GTM"],
     bullets:[
       "Led UAT process for AI-powered features across Shopify app extension and Interactive Studio 2.0, validating backend-frontend interactions against business requirements.",
       "Partnered with founding team on product scoping and release readiness, aligning cross-functional requirements with go-to-market timelines.",
@@ -48,6 +52,8 @@ const entries: Entry[] = [
     title:"Northeastern University", subtitle:"MS Computer Science · GPA 4.0",
     startYear:2023, startMonth:9, endYear:2026, endMonth:4,
     location:"Seattle, WA",
+    logo:"https://www.google.com/s2/favicons?domain=northeastern.edu&sz=64",
+    skills:["Algorithms", "ML", "Databases", "Software Eng"],
     bullets:[
       "GPA: 4.0 / 4.0, expected graduation April 2026.",
       "Relevant coursework: Algorithms, Database Systems, Software Engineering, Machine Learning.",
@@ -58,6 +64,8 @@ const entries: Entry[] = [
     title:"Amazon Web Services", subtitle:"Business Operations Manager",
     startYear:2022, startMonth:2, endYear:2023, endMonth:8,
     location:"Shanghai, China",
+    logo:"https://www.google.com/s2/favicons?domain=aws.amazon.com&sz=64",
+    skills:["SQL", "Tableau", "Anaplan", "Python", "Strategy"],
     bullets:[
       "Orchestrated strategic alignment between GCR C-suite and 20+ teams for a $3.5B+ revenue business.",
       "Defined requirements and led delivery of an Anaplan-based forecasting tool, improving efficiency for 1,000+ sales reps.",
@@ -70,10 +78,12 @@ const entries: Entry[] = [
     title:"Amazon.com, Inc.", subtitle:"Financial Analyst, Logistics",
     startYear:2020, startMonth:5, endYear:2022, endMonth:2,
     location:"Seattle, WA",
+    logo:"https://www.google.com/s2/favicons?domain=amazon.com&sz=64",
+    skills:["Python", "SQL", "Forecasting", "ERP", "BI"],
     bullets:[
+      "Led financial decision-making for 300+ station launches aligned with $400M+ CAPEX strategy.",
       "Built a centralized tracking system across 300+ logistics stations, closing a critical data visibility gap.",
       "Developed Python and SQL forecasting models, improving forecast accuracy by 30%.",
-      "Led financial decision-making for 300+ station launches aligned with $400M+ CAPEX strategy.",
       "Championed ERP and BI tool adoption; standardized workflows across 300+ stations.",
     ],
   },
@@ -82,10 +92,12 @@ const entries: Entry[] = [
     title:"Huawei Technologies, Inc.", subtitle:"Financial Planning Analyst",
     startYear:2018, startMonth:9, endYear:2020, endMonth:2,
     location:"Plano, TX",
+    logo:"https://www.google.com/s2/favicons?domain=huawei.com&sz=64",
+    skills:["Workday ERP", "Forecasting", "Finance", "Excel"],
     bullets:[
+      "Managed forecasting for 40+ R&D projects ($60M+ budget), achieving 94% spend execution.",
       "Administered Workday ERP rollout for 50+ Finance and executive users, improving efficiency by 50%.",
       "Consolidated 500K+ monthly expense records from 30+ enterprise systems for executive reporting.",
-      "Managed forecasting for 40+ R&D projects ($60M+ budget), achieving 94% spend execution.",
     ],
   },
   {
@@ -93,6 +105,8 @@ const entries: Entry[] = [
     title:"Univ. of Texas at Dallas", subtitle:"MS Finance & Business Analytics · GPA 3.65",
     startYear:2016, startMonth:8, endYear:2019, endMonth:5,
     location:"Dallas, TX",
+    logo:"https://www.google.com/s2/favicons?domain=utdallas.edu&sz=64",
+    skills:["Finance", "Analytics", "Econometrics"],
     bullets:[
       "GPA: 3.65 / 4.0.",
       "Honors: Dean's Excellent Scholarship, Dean's Impact Scholarship.",
@@ -112,7 +126,7 @@ const workEntries = entries
     durLabel: fmtD(durMo(e)),
   }));
 
-const EDU_CARD_H = 108; // p-4 padding + text lines in edu card
+const EDU_CARD_H = 178; // p-4 padding + logo row + bullet preview + skill tags
 
 // Education: proportional placement, per-entry sizing and width
 const eduEntries = entries
@@ -121,12 +135,12 @@ const eduEntries = entries
     // NEU card min-height extends to SlicPix's bottom so it visually "contains" it
     // SlicPix bottom = SLOT_OFFSET + header(36) + card(EDU_CARD_H)
     // NEU card starts after its own header (36px), so min-height = SlicPix bottom - 36
-    const cardMinH = e.id === "neu" ? SLOT_OFFSET + EDU_CARD_H + 20 : 0;
+    const cardMinH = e.id === "neu" ? SLOT_OFFSET + EDU_CARD_H + 10 : 0;
     return {
       ...e,
       endTop:   (LATEST - (e.endYear * 12 + e.endMonth)) * PPM_EDU,
       cardMinH,
-      boxRight: "0px",
+      boxRight: "128px",
       period:   fmtP(e),
       durLabel: fmtD(durMo(e)),
     };
@@ -169,11 +183,11 @@ const CONTAINER_H = Math.max(
     {eduEntries.map(e => (
       <div
         class="absolute z-2"
-        style={`top:${e.endTop}px; left:calc(50% + 16px); right:${e.boxRight};`}
+        style={`top:${e.endTop}px; left:calc(50% + 32px); right:${e.boxRight};`}
       >
         <!-- Date label + icon outside the card, above it (mirrors work card layout) -->
         <div class="relative flex items-center mb-2">
-          <div class="absolute left-[-30px] z-20">
+          <div class="absolute left-[-46px] z-20">
             <div class="w-7 h-7 rounded-md border-2 border-black bg-[#bae6ff] flex items-center justify-center shadow-[2px_2px_0px_rgba(0,0,0,0.12)]">
               <Icon name="ri:graduation-cap-line" class="w-3.5 h-3.5" />
             </div>
@@ -184,18 +198,24 @@ const CONTAINER_H = Math.max(
           </span>
         </div>
         <!-- Card content from top, same structure as work cards -->
-        <div class="border border-black rounded-lg bg-white p-4 shadow-[4px_4px_0px_rgba(0,0,0,0.10)] hover:border-[#7ecfff] transition-colors cursor-pointer"
+        <div class="relative border border-black rounded-lg bg-white p-4 shadow-[4px_4px_0px_rgba(0,0,0,0.10)] hover:border-[#7ecfff] transition-colors cursor-pointer"
              data-open-modal={`modal-${e.id}`}
              style={e.cardMinH ? `min-height:${e.cardMinH}px` : ""}>
-          <h3 class="font-bold text-sm leading-snug">{e.title}</h3>
-          <p class="text-xs font-semibold mt-0.5 text-blue-500">{e.subtitle}</p>
-          <p class="text-xs text-darkslate-300 mt-0.5">{e.location}</p>
-          <button
-            data-open-modal={`modal-${e.id}`}
-            class="mt-3 text-xs font-semibold hover:underline underline-offset-2 cursor-pointer"
-          >
-            Read more →
-          </button>
+          <span class="absolute top-2.5 right-3 text-black/25 text-xs">↗</span>
+          <div class="flex items-start gap-2.5 pr-4">
+            <img src={e.logo} class="w-6 h-6 rounded object-contain flex-shrink-0 mt-0.5" onerror="this.style.display='none'" alt="" loading="lazy" />
+            <div class="flex-1 min-w-0">
+              <h3 class="font-bold text-sm leading-snug">{e.title}</h3>
+              <p class="text-xs font-semibold mt-0.5 text-blue-500">{e.subtitle}</p>
+              <p class="text-xs text-darkslate-300 mt-0.5">{e.location}</p>
+            </div>
+          </div>
+          <p class="text-xs text-black/45 mt-2 line-clamp-2 leading-relaxed">{e.bullets[0]}</p>
+          <div class="flex flex-wrap gap-1 mt-2">
+            {e.skills.map(s => (
+              <span class="text-[10px] px-1.5 py-0.5 bg-[#bae6ff]/40 border border-[#7ecfff] rounded-full whitespace-nowrap">{s}</span>
+            ))}
+          </div>
         </div>
       </div>
     ))}
@@ -208,7 +228,7 @@ const CONTAINER_H = Math.max(
       >
         <!-- Date label + icon row -->
         <div class="relative flex items-center mb-2">
-          <div class="w-1/2 flex justify-end pr-5">
+          <div class="w-1/2 flex justify-end pr-9">
             <span class="text-[11px] text-darkslate-300 italic">
               {e.period}&ensp;
               <span class="not-italic font-medium text-black/45">({e.durLabel})</span>
@@ -224,17 +244,23 @@ const CONTAINER_H = Math.max(
         </div>
 
         <!-- Card on left half -->
-        <div class="w-1/2 pr-5 pointer-events-auto">
-          <div class="border border-black rounded-lg bg-white p-4 shadow-[4px_4px_0px_rgba(0,0,0,0.10)] hover:border-primary-500 transition-colors cursor-pointer" data-open-modal={`modal-${e.id}`}>
-            <h3 class="font-bold text-sm leading-snug">{e.title}</h3>
-            <p class="text-xs font-semibold mt-0.5 text-amber-600">{e.subtitle}</p>
-            <p class="text-xs text-darkslate-300 mt-0.5">{e.location}</p>
-            <button
-              data-open-modal={`modal-${e.id}`}
-              class="mt-3 text-xs font-semibold hover:underline underline-offset-2 cursor-pointer"
-            >
-              Read more →
-            </button>
+        <div class="pointer-events-auto" style="margin-left:128px; margin-right:calc(50% + 32px);">
+          <div class="relative border border-black rounded-lg bg-white p-4 shadow-[4px_4px_0px_rgba(0,0,0,0.10)] hover:border-primary-500 transition-colors cursor-pointer" data-open-modal={`modal-${e.id}`}>
+            <span class="absolute top-2.5 right-3 text-black/25 text-xs">↗</span>
+            <div class="flex items-start gap-2.5 pr-4">
+              <img src={e.logo} class="w-6 h-6 rounded object-contain flex-shrink-0 mt-0.5" onerror="this.style.display='none'" alt="" loading="lazy" />
+              <div class="flex-1 min-w-0">
+                <h3 class="font-bold text-sm leading-snug">{e.title}</h3>
+                <p class="text-xs font-semibold mt-0.5 text-amber-600">{e.subtitle}</p>
+                <p class="text-xs text-darkslate-300 mt-0.5">{e.location}</p>
+              </div>
+            </div>
+            <p class="text-xs text-black/45 mt-2 line-clamp-2 leading-relaxed">{e.bullets[0]}</p>
+            <div class="flex flex-wrap gap-1 mt-2">
+              {e.skills.map(s => (
+                <span class="text-[10px] px-1.5 py-0.5 bg-primary-500/20 border border-primary-500/40 rounded-full whitespace-nowrap">{s}</span>
+              ))}
+            </div>
           </div>
         </div>
       </div>
@@ -245,22 +271,27 @@ const CONTAINER_H = Math.max(
   <!-- ═══ MOBILE: flat list ═══ -->
   <div class="md:hidden space-y-3">
     {allEntries.map(e => (
-      <div class={`relative border rounded-lg bg-white p-4 shadow-[4px_4px_0px_rgba(0,0,0,0.10)] pl-8 ${e.type==="work" ? "border-black" : "border-dashed border-[#7ecfff]"}`}>
-        <div class={`absolute left-3 top-5 w-[10px] h-[10px] rounded-full border-2 border-black ${e.type==="work" ? "bg-primary-500" : "bg-[#bae6ff]"}`} />
-        <div class="flex flex-wrap items-start justify-between gap-1 mb-0.5">
-          <h3 class="font-bold text-sm">{e.title}</h3>
-          <span class={`text-[10px] font-semibold px-2 py-0.5 border border-black rounded-full ${e.type==="work" ? "bg-primary-500" : "bg-[#bae6ff]"}`}>
-            {e.period}
-          </span>
+      <div data-open-modal={`modal-${e.id}`} class={`relative border rounded-lg bg-white p-4 shadow-[4px_4px_0px_rgba(0,0,0,0.10)] cursor-pointer ${e.type==="work" ? "border-black hover:border-primary-500" : "border-[#7ecfff] hover:border-blue-400"} transition-colors`}>
+        <span class="absolute top-2.5 right-3 text-black/25 text-xs">↗</span>
+        <div class="flex items-start gap-2.5 pr-4">
+          <img src={e.logo} class="w-6 h-6 rounded object-contain flex-shrink-0 mt-0.5" onerror="this.style.display='none'" alt="" loading="lazy" />
+          <div class="flex-1 min-w-0">
+            <div class="flex flex-wrap items-start justify-between gap-1 mb-0.5">
+              <h3 class="font-bold text-sm">{e.title}</h3>
+              <span class={`text-[10px] font-semibold px-2 py-0.5 border border-black rounded-full ${e.type==="work" ? "bg-primary-500" : "bg-[#bae6ff]"}`}>
+                {e.period}
+              </span>
+            </div>
+            <p class={`text-xs font-semibold ${e.type==="work" ? "text-amber-600" : "text-blue-500"}`}>{e.subtitle}</p>
+            <p class="text-xs text-darkslate-300 mt-0.5">{e.location}</p>
+          </div>
         </div>
-        <p class={`text-xs font-semibold ${e.type==="work" ? "text-amber-600" : "text-blue-500"}`}>{e.subtitle}</p>
-        <p class="text-xs text-darkslate-300 mt-0.5">{e.location}</p>
-        <button
-          data-open-modal={`modal-${e.id}`}
-          class="mt-2.5 text-xs font-semibold hover:underline underline-offset-2 cursor-pointer"
-        >
-          Read more →
-        </button>
+        <p class="text-xs text-black/45 mt-2 line-clamp-2 leading-relaxed">{e.bullets[0]}</p>
+        <div class="flex flex-wrap gap-1 mt-2">
+          {e.skills.map(s => (
+            <span class={`text-[10px] px-1.5 py-0.5 rounded-full whitespace-nowrap border ${e.type==="work" ? "bg-primary-500/20 border-primary-500/40" : "bg-[#bae6ff]/40 border-[#7ecfff]"}`}>{s}</span>
+          ))}
+        </div>
       </div>
     ))}
   </div>
@@ -271,15 +302,18 @@ const CONTAINER_H = Math.max(
   <dialog id={`modal-${e.id}`} class="timeline-dialog">
     <div class="bg-white border border-black rounded-lg shadow-[8px_8px_0px_rgba(0,0,0,0.12)] p-6 w-full">
       <div class="flex justify-between items-start mb-5">
-        <div>
+        <div class="flex-1 min-w-0">
           <div class="flex items-center gap-2 mb-1">
-            <div class={`w-6 h-6 rounded border border-black flex items-center justify-center flex-shrink-0 ${e.type==="work" ? "bg-primary-500" : "bg-[#bae6ff]"}`}>
-              <Icon name={e.type==="work" ? "ri:briefcase-2-line" : "ri:graduation-cap-line"} class="w-3.5 h-3.5" />
-            </div>
+            <img src={e.logo} class="w-6 h-6 rounded object-contain flex-shrink-0" onerror="this.style.display='none'" alt="" loading="lazy" />
             <h3 class="font-bold text-base">{e.title}</h3>
           </div>
           <p class={`text-sm font-semibold ${e.type==="work" ? "text-amber-600" : "text-blue-500"}`}>{e.subtitle}</p>
           <p class="text-xs text-darkslate-300 mt-1">{fmtP(e)}&ensp;·&ensp;{fmtD(durMo(e))}&ensp;·&ensp;{e.location}</p>
+          <div class="flex flex-wrap gap-1 mt-2">
+            {e.skills.map(s => (
+              <span class={`text-[10px] px-1.5 py-0.5 rounded-full whitespace-nowrap border ${e.type==="work" ? "bg-primary-500/20 border-primary-500/40" : "bg-[#bae6ff]/40 border-[#7ecfff]"}`}>{s}</span>
+            ))}
+          </div>
         </div>
         <button data-close-modal aria-label="Close"
                 class="ml-4 text-xl leading-none text-darkslate-300 hover:text-black cursor-pointer flex-shrink-0">✕</button>
