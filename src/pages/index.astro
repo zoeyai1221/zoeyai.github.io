@@ -11,6 +11,8 @@ import Globe from "../components/Globe";
 import DesignWorksCard from "../components/DesignWorksCard.astro";
 import { SITE } from "../site-config";
 import WorkExperience from "../components/WorkExperience.astro";
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, "");
 ---
 
 <script>
@@ -48,19 +50,19 @@ import WorkExperience from "../components/WorkExperience.astro";
     <DesignWorksCard />
     <Now />
     <Card
-      href="playground"
+      href={`${base}/playground`}
       colSpan="md:col-span-1"
       rowSpan="md:row-span-1"
       title="Playground"
     />
     <Card
-      href="/guestbook"
+      href={`${base}/guestbook`}
       colSpan="md:col-span-1"
       rowSpan="md:row-span-1"
       title="Guestbook"
     />
     <Card
-      href="/blog"
+      href={`${base}/blog`}
       colSpan="md:col-span-1"
       rowSpan="md:row-span-1"
       title="Blog"
@@ -68,7 +70,7 @@ import WorkExperience from "../components/WorkExperience.astro";
     <Card
       colorText="text-neutral-900"
       colSpan="md:col-span-1"
-      href="travel"
+      href={`${base}/travel`}
       rowSpan="md:row-span-1"
       title="Countries I visited"
     >
